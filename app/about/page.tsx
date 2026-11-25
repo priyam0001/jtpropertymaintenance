@@ -19,7 +19,7 @@ const values: { icon: IconName; title: string; text: string }[] = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="About Us" image="/images/lawn-commercial.webp" />
+      <PageHero title="About Us" image="/images/front-yard-after.webp" />
 
       <section className="section-y">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-[68px]">

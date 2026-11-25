@@ -18,6 +18,7 @@ const paths = {
   award: "M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm-3.5-1L7 22l5-3 5 3-1.5-8",
   clipboard:
     "M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1Zm7 2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2m1 10 2 2 4-4",
+  play: "M7 4v16l13-8Z",
   building: "M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h6v4H9z",
 } as const;
 

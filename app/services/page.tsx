@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <PageHero title="Our Services" image="/images/lawn-crew.webp" />
+      <PageHero title="Our Services" image="/images/backyard-after.webp" />
 
       <section className="section-y">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-[68px]">

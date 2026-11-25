@@ -35,6 +35,22 @@ export const site = {
   ],
 } as const;
 
+// J.T.'s 8 newest reels. Covers are self-hosted in public/images/reels/<id>.webp; Instagram's player loads only on tap.
+export const instagram = {
+  handle: "jtpropertymaintenance_",
+  url: "https://www.instagram.com/jtpropertymaintenance_/",
+  reels: [
+    { id: "DgJWVXYAYrT", title: "Undercoating all the trucks & trailers" },
+    { id: "DgDj56IhpiA", title: "Worst case gutter cleaning" },
+    { id: "DfifnP2ATao", title: "Snow pickets keeping us busy" },
+    { id: "De2IZlBTC9U", title: "Brand new trailer putting in the work" },
+    { id: "DeKQofzT1m4", title: "Gutter cleaning in Wasaga Beach" },
+    { id: "DdoTRcezWRe", title: "Undercoating tractors" },
+    { id: "DdMdfUEuVI_", title: "Stripes for days" },
+    { id: "DdCc5AoTPnj", title: "Labour Day shenanigans" },
+  ],
+} as const;
+
 // Set to null when the client has no award: every award block and award sentence on the site then disappears.
 export type Award = { name: string; category: string; years: string; images: { src: string; alt: string }[] };
 export const award: Award | null = {
@@ -68,7 +84,7 @@ export const pageMeta = {
 };
 
 export const heroSlides = [
-  { image: "/images/lawn-residential.webp", label: "Lawn & Garden Care", alt: `Freshly striped lawn in front of a ${city} home` },
+  { image: "/images/front-yard-after.webp", label: "Lawn & Garden Care", alt: `${city} front yard with armour stone, grasses and black mulch after a ${name} makeover` },
   { image: "/images/plow-trucks-commercial.webp", label: "Snow Plowing & Removal", alt: `${name} plow trucks in a cleared commercial lot at night` },
 ];
 
@@ -115,13 +131,13 @@ export const serviceCards: ServiceCard[] = [
   {
     title: "Lawn Maintenance & Grass Cutting",
     text: "Regular grass cutting and lawn care for homes and businesses, with every clipping picked up before we leave.",
-    image: "/images/lawn-residential.webp",
+    image: "/images/lawn-stripes.webp",
     href: "/services/lawn-care-barrie",
   },
   {
     title: "Spring & Fall Clean-Ups",
     text: "Leaves, sticks, debris and yard waste cleared away each season, including large-quantity leaf removal.",
-    image: "/images/lawn-crew.webp",
+    image: "/images/backyard-after.webp",
     href: "/services/spring-fall-cleanup-barrie",
   },
 ];
@@ -219,8 +235,8 @@ export const serviceDetails: ServiceDetail[] = [
     metaTitle: `Lawn Care ${city} | Grass Cutting & Lawn Maintenance | J.T. Property Maintenance`,
     metaDescription:
       `Grass cutting and lawn maintenance in ${city} for homes and businesses. Fertilizing, aeration, overseeding and thatching.${awardLine} Free estimates.`,
-    image: "/images/lawn-residential.webp",
-    gallery: ["/images/lawn-commercial.webp", "/images/jt-truck.webp"],
+    image: "/images/backyard-after-2.webp",
+    gallery: ["/images/lawn-stripes.webp", "/images/jt-truck.webp"],
     intro: [
       "You have a busy schedule, and yard work is the last thing you want to spend your time off on. After a hectic week, let our team take care of the time-consuming lawn chores and keep your yard clean and orderly every visit.",
       `We cut grass for residential and commercial properties and pick up all clippings, leaves and other yard waste, so your yard and driveway are left in pristine condition.${award ? ` ${name} won the ${awardYears} ${award.name} in the ${award.category} category.` : ""}`,
@@ -246,8 +262,8 @@ export const serviceDetails: ServiceDetail[] = [
     metaTitle: `Spring & Fall Clean-Up ${city} | Leaf Removal | J.T. Property Maintenance`,
     metaDescription:
       `Spring and fall yard clean-ups in ${city}: large-quantity leaf removal, debris removal, eavestrough cleaning and yard waste pickup. One-time or seasonal contracts. Free estimates.`,
-    image: "/images/lawn-crew.webp",
-    gallery: ["/images/stone-walkway.webp", "/images/steps-after.webp"],
+    image: "/images/backyard-after.webp",
+    gallery: ["/images/stone-walkway.webp", "/images/patio-after.webp"],
     intro: [
       "We take care of the leaves, debris, sticks and other yard clutter that builds up every season. Whether your property needs a spring refresh or a fall clear-out before the snow arrives, our crew leaves it clean and ready.",
       "No job is too big or too small for our experienced staff, and we work on your schedule. Book a one-time clean-up or add it to a seasonal contract.",

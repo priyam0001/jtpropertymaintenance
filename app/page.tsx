@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckBadge, Icon, type IconName } from "@/components/Icon";
 import { Marquee } from "@/components/blocks";
+import { Reels } from "@/components/Reels";
 import { Snow } from "@/components/Snow";
 import { Accordion, HeroSlider, ServiceCarousel } from "@/components/sections";
 import { Button, Eyebrow, Reveal } from "@/components/ui";
@@ -16,15 +17,16 @@ export default function Home() {
       <WhyChoose />
       <OurWork />
       <Process />
+      <Reels />
       <Marquee
         images={[
-          { src: "/images/lawn-residential.webp", alt: "Striped residential lawn" },
+          { src: "/images/backyard-after-2.webp", alt: "Backyard cut and cleared after a fall clean-up" },
           { src: "/images/plow-trucks-commercial.webp", alt: "Plow trucks after clearing a commercial lot" },
-          { src: "/images/lawn-commercial.webp", alt: "Commercial grounds after grass cutting" },
+          { src: "/images/lawn-stripes.webp", alt: "Fresh mowing stripes beside a commercial building" },
           { src: "/images/tractor-snowblower.webp", alt: "Tractor with snowblower attachment" },
           { src: "/images/stone-walkway.webp", alt: "Flagstone side walkway" },
           { src: "/images/jt-truck.webp", alt: `${site.name} lawn care truck` },
-          { src: "/images/lawn-crew.webp", alt: "Crew planting cedars on a large lawn" },
+          { src: "/images/front-yard-after.webp", alt: "Front yard garden with armour stone and black mulch" },
         ]}
       />
       <Faq />
@@ -44,7 +46,7 @@ function About() {
       <div className="container-x grid items-start gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[68px]">
         <Reveal from="left">
           <div className="relative aspect-[618/606] overflow-hidden rounded-[12px]">
-            <Image src="/images/lawn-crew.webp" alt={`${site.name} crew planting cedars on a large lawn`} fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
+            <Image src="/images/backyard-after.webp" alt={`Backyard cut back and cleared by ${site.name}`} fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
           </div>
           <div className="mt-8 flex items-center gap-4">
             <CheckBadge className="size-7" />
@@ -150,9 +152,9 @@ function WhyChoose() {
 
 function OurWork() {
   const work = [
-    { src: "/images/lawn-commercial.webp", title: "Commercial Grounds", text: "Business property grounds cut, edged and cleaned up.", href: "/services/lawn-care-barrie" },
+    { src: "/images/lawn-stripes.webp", title: "Commercial Grounds", text: "Business property grounds cut, edged and cleaned up.", href: "/services/lawn-care-barrie" },
     { src: "/images/plow-trucks-commercial.webp", title: "Commercial Lot Plowing", text: "Our plow trucks after clearing a plaza parking lot.", href: "/services/snow-removal-barrie" },
-    { src: "/images/lawn-residential.webp", title: "Residential Lawn Care", text: "Clean stripes, trimmed edges and every clipping picked up.", href: "/services/lawn-care-barrie" },
+    { src: "/images/backyard-after.webp", title: "Backyard Clean-Up", text: "An overgrown backyard cut back and cleared before winter.", href: "/services/spring-fall-cleanup-barrie" },
   ];
   return (
     <section className="section-y bg-cream">
