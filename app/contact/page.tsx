@@ -3,12 +3,11 @@ import { PageHero } from "@/components/blocks";
 import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/motion";
 import { Eyebrow } from "@/components/ui";
-import { site } from "@/lib/site";
+import { pageMeta, site } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Free Quote | J.T. Property Maintenance Barrie",
-  description: "Request a free estimate for lawn care, clean-ups or snow removal in Barrie. Call 705-721-9335 or send us a message.",
+  ...pageMeta.contact,
   alternates: { canonical: "/contact" },
 };
 

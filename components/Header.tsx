@@ -13,11 +13,11 @@ export function Logo({ dark = false }: { dark?: boolean }) {
   return (
     <Link href="/" className="flex items-center gap-3" aria-label={`${site.name} home`}>
       <span className={`grid h-11 w-10 place-items-center rounded-[8px] ${dark ? "bg-primary" : "bg-primary/90"}`}>
-        <Image src="/images/jt-logo.png" alt="" width={433} height={558} className="h-8 w-auto" preload />
+        <Image src={site.logo.src} alt="" width={site.logo.width} height={site.logo.height} className="h-8 w-auto" preload />
       </span>
       <span className={`text-[17px] leading-tight font-semibold lg:text-[19px] ${dark ? "text-dark" : "text-white"}`}>
-        J.T. Property
-        <br className="sm:hidden" /> Maintenance
+        {site.wordmark[0]}
+        <br className="sm:hidden" /> {site.wordmark[1]}
       </span>
     </Link>
   );
@@ -101,10 +101,12 @@ export function Header() {
               transition={{ duration: 0.6, ease: [0.6, 0.1, 0.2, 1] }}
               aria-label="Mobile menu"
               onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}
+              onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
             >
               <div className="flex items-center justify-between">
                 <Logo dark />
-                <button type="button" onClick={() => setOpen(false)} className="rounded-[6px] bg-primary p-2.5 text-white" aria-label="Close menu">
+                {/* autoFocus moves keyboard focus into the menu so Escape and Tab work from the first keypress */}
+                <button type="button" autoFocus onClick={() => setOpen(false)} className="rounded-[6px] bg-primary p-2.5 text-white" aria-label="Close menu">
                   <Icon name="close" className="size-5" />
                 </button>
               </div>

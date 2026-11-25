@@ -5,12 +5,10 @@ import { CtaBand, PageHero } from "@/components/blocks";
 import { CheckBadge, Icon } from "@/components/Icon";
 import { Reveal } from "@/components/motion";
 import { Eyebrow } from "@/components/ui";
-import { seasonal, serviceCards } from "@/lib/site";
+import { pageMeta, seasonal, serviceCards, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Landscaping & Property Maintenance Services Barrie | J.T. Property Maintenance",
-  description:
-    "Lawn maintenance, grass cutting, clean-ups, eavestrough cleaning, aeration, snow plowing, snow removal and salting in Barrie. Residential and commercial. Free estimates.",
+  ...pageMeta.services,
   alternates: { canonical: "/services" },
 };
 
@@ -23,7 +21,7 @@ export default function ServicesPage() {
         <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-[68px]">
           <Reveal from="left">
             <Eyebrow>On Time, Every Time</Eyebrow>
-            <h2>Affordable landscaping and property maintenance for the Barrie area</h2>
+            <h2>Affordable landscaping and property maintenance for the {site.city} area</h2>
             <p className="mt-5 text-[16px]">
               We arrive at your property when you need us most, for everything from snow removal to grass cutting. You never have to wait around for our team to
               show up: we follow your schedule and meet your deadlines. Residential or commercial, you can count on excellent pricing and quality work.
@@ -32,7 +30,7 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal from="right">
             <div className="relative aspect-[16/10] overflow-hidden rounded-[12px]">
-              <Image src="/images/jt-truck.webp" alt="J.T. Property Maintenance lawn care truck" fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
+              <Image src="/images/jt-truck.webp" alt={`${site.name} lawn care truck`} fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
             </div>
           </Reveal>
         </div>

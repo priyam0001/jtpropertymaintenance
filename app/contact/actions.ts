@@ -1,40 +1,26 @@
 "use server";
 
-import { quoteServices } from "@/lib/site";
+import { validateLead, type Lead } from "@/lib/lead";
+import { quoteServices, site } from "@/lib/site";
 
-export type LeadState = { ok: boolean; message: string } | null;
+// values: what the visitor typed, sent back on error so the form can refill itself (React 19 resets forms after an action).
+export type LeadState = { ok: boolean; message: string; values?: Lead } | null;
 
-const clean = (v: FormDataEntryValue | null, max: number) => String(v ?? "").trim().slice(0, max);
-
-// Public form → validate here (trust boundary) → GoHighLevel webhook, Resend email as fallback.
+// Public form → validate (trust boundary) → GoHighLevel webhook, Resend email as fallback.
 export async function submitLead(_prev: LeadState, formData: FormData): Promise<LeadState> {
-  if (clean(formData.get("company"), 100)) return { ok: true, message: "Thanks! We'll be in touch shortly." }; // honeypot
+  const thanks = "Thanks! Your request is in. We'll call you back shortly.";
+  const check = validateLead(formData, quoteServices);
+  if ("spam" in check) return { ok: true, message: thanks };
+  if (check.error) return { ok: false, message: check.error, values: check.lead };
 
-  const lead = {
-    name: clean(formData.get("name"), 120),
-    phone: clean(formData.get("phone"), 40),
-    email: clean(formData.get("email"), 160),
-    address: clean(formData.get("address"), 200),
-    service: clean(formData.get("service"), 80),
-    message: clean(formData.get("message"), 3000),
-    source: "jtpropertymaintenance.ca contact form",
-  };
+  const lead = { ...check.lead, source: `${new URL(site.url).hostname} contact form` };
+  if ((await sendToGhl(lead)) || (await sendEmail(lead))) return { ok: true, message: thanks };
 
-  if (!lead.name || !lead.phone || !lead.email) return { ok: false, message: "Please add your name, phone number and email." };
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) return { ok: false, message: "Please check your email address." };
-  if (lead.phone.replace(/\D/g, "").length < 10) return { ok: false, message: "Please enter a 10-digit phone number." };
-  if (lead.service && !(quoteServices as readonly string[]).includes(lead.service)) lead.service = "Other";
-
-  if (await sendToGhl(lead)) return { ok: true, message: "Thanks! Your request is in. We'll call you back shortly." };
-  if (await sendEmail(lead)) return { ok: true, message: "Thanks! Your request is in. We'll call you back shortly." };
-
-  console.error("Lead delivery failed: no GHL_WEBHOOK_URL/RESEND_API_KEY configured or both requests failed");
-  return { ok: false, message: "Sorry, we couldn't send your message. Please call us at 705-721-9335." };
+  console.error("Lead delivery failed: GHL_WEBHOOK_URL / RESEND_API_KEY+LEAD_EMAIL+LEAD_FROM not configured, or both requests failed");
+  return { ok: false, message: `Sorry, we couldn't send your message. Please call us at ${site.phone}.`, values: check.lead };
 }
 
-type Lead = Record<string, string>;
-
-async function sendToGhl(lead: Lead) {
+async function sendToGhl(lead: Record<string, string>) {
   const url = process.env.GHL_WEBHOOK_URL;
   if (!url) return false;
   try {
@@ -47,10 +33,10 @@ async function sendToGhl(lead: Lead) {
   }
 }
 
-async function sendEmail(lead: Lead) {
-  const key = process.env.RESEND_API_KEY;
-  const to = process.env.LEAD_EMAIL;
-  if (!key || !to) return false;
+async function sendEmail(lead: Record<string, string>) {
+  const { RESEND_API_KEY: key, LEAD_EMAIL: to, LEAD_FROM: from } = process.env;
+  // No LEAD_FROM = not configured: Resend's onboarding@resend.dev sender only delivers to the Resend account owner.
+  if (!key || !to || !from) return false;
   const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
   const rows = Object.entries(lead).map(([k, v]) => `<tr><td><b>${esc(k)}</b></td><td>${esc(v).replace(/\n/g, "<br>")}</td></tr>`).join("");
   try {
@@ -58,7 +44,7 @@ async function sendEmail(lead: Lead) {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: process.env.LEAD_FROM ?? "JT Website <onboarding@resend.dev>",
+        from,
         to: [to],
         reply_to: lead.email,
         subject: `New quote request: ${lead.name}${lead.service ? ` (${lead.service})` : ""}`,

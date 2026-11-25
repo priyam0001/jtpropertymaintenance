@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { nav, serviceCards, site } from "@/lib/site";
+import { award, nav, serviceCards, site } from "@/lib/site";
 import { Icon } from "./Icon";
 import { Logo } from "./Header";
 
@@ -16,14 +16,16 @@ export function Footer() {
             <p className="mt-5 max-w-sm text-[16px] leading-relaxed text-white/80">
               Year-round landscaping and property maintenance for homes and businesses in {site.area}, since {site.founded}.
             </p>
-            <div className="mt-6 flex items-center gap-3">
-              <Image src="/images/award-2026.webp" alt="2026 Consumer Choice Award certificate, Lawn Maintenance, Barrie" width={60} height={80} className="h-20 w-auto rounded-[6px]" />
-              <p className="text-[14px] text-white/80">
-                Consumer Choice Award
-                <br />
-                <span className="font-semibold text-white">2020 &amp; 2026</span> · Lawn Maintenance
-              </p>
-            </div>
+            {award && (
+              <div className="mt-6 flex items-center gap-3">
+                <Image src={award.images.at(-1)!.src} alt={award.images.at(-1)!.alt} width={60} height={80} className="h-20 w-auto rounded-[6px]" />
+                <p className="text-[14px] text-white/80">
+                  {award.name}
+                  <br />
+                  <span className="font-semibold text-white">{award.years}</span> · {award.category}
+                </p>
+              </div>
+            )}
           </div>
 
           <FooterCol title="Company" links={nav.map((n) => ({ href: n.href, label: n.label }))} />
@@ -59,7 +61,7 @@ export function Footer() {
         <div className="container-x relative pb-8">
           <div className="flex flex-col gap-3 rounded-[12px] bg-white/10 px-6 py-5 text-[15px] md:flex-row md:items-center md:justify-between md:px-8">
             <p>© {site.name}. All rights reserved.</p>
-            <p className="text-white/70">Lawn care, landscaping &amp; snow removal in Barrie, Ontario</p>
+            <p className="text-white/70">{site.footerLine}</p>
           </div>
         </div>
       </div>

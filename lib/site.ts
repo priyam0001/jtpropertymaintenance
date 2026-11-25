@@ -1,22 +1,73 @@
-// Single source of truth for JT's facts. Everything here comes from the current Wix site
-// or the client brief; anything unknown is listed in TODO_CLIENT.md instead of invented.
+// ─────────────────────────────────────────────────────────────────────────────
+// TEMPLATE: this file is the client. For a new client, edit this file, replace
+// public/images/*, and set brand colours in app/globals.css (@theme). See README.
+// Every fact here came from the client; never invent reviews, stats or awards.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const name = "J.T. Property Maintenance";
+const city = "Barrie";
+const phone = "705-721-9335";
+const founded = 1995;
 
 export const site = {
-  name: "J.T. Property Maintenance",
-  url: "https://www.jtpropertymaintenance.ca",
-  phone: "705-721-9335",
-  phoneHref: "tel:+17057219335",
+  name,
+  shortName: "J.T.",
+  wordmark: ["J.T. Property", "Maintenance"], // logo text, two lines on phones
+  url: "https://www.jtpropertymaintenance.ca", // production domain: canonicals, sitemap, OG
+  phone,
+  phoneHref: "tel:+17057219335", // E.164, also used for JSON-LD
   email: "jtproperty@hotmail.com",
-  founded: 1995,
-  area: "Barrie & surrounding area",
+  founded,
+  city,
+  region: "Ontario",
+  regionCode: "ON",
+  country: "CA",
+  area: `${city} & surrounding area`,
   tagline: "Bringing Out the Best in Your Property All Year Long",
-  description:
-    "Year-round landscaping and property maintenance in Barrie since 1995: grass cutting, spring and fall clean-ups, snow plowing, snow removal and salting for homes and businesses.",
+  description: `Year-round landscaping and property maintenance in ${city} since ${founded}: grass cutting, spring and fall clean-ups, snow plowing, snow removal and salting for homes and businesses.`,
+  footerLine: `Lawn care, landscaping & snow removal in ${city}, Ontario`,
+  logo: { src: "/images/jt-logo.png", width: 433, height: 558 },
+  ogImage: "/images/og.jpg", // 1200×630 JPG
+  heroBadges: ["Residential & Commercial", "Free Estimates", "Year-Round Service"],
   hours: [
     { label: "Summer (April–October)", value: "Monday–Friday, 9:00 AM–5:00 PM" },
     { label: "Winter (November–March)", value: "Available 24/7" },
   ],
 } as const;
+
+// SEO title + description per page (service pages have theirs in serviceDetails below).
+export const pageMeta = {
+  home: { title: `Property Maintenance ${city} | Lawn Care & Snow Removal | ${name}`, description: site.description },
+  services: {
+    title: `Landscaping & Property Maintenance Services ${city} | ${name}`,
+    description: `Lawn maintenance, grass cutting, clean-ups, eavestrough cleaning, aeration, snow plowing, snow removal and salting in ${city}. Residential and commercial. Free estimates.`,
+  },
+  about: {
+    title: `About Us | ${city} Property Maintenance Since ${founded} | ${name}`,
+    description: `${name} has served ${city} since ${founded} with year-round lawn care, landscaping and snow removal. 2020 and 2026 Consumer Choice Award winner for Lawn Maintenance.`,
+  },
+  contact: {
+    title: `Contact Us | Free Quote | ${name} ${city}`,
+    description: `Request a free estimate for lawn care, clean-ups or snow removal in ${city}. Call ${phone} or send us a message.`,
+  },
+};
+
+// Set to null when the client has no award: every award block on the site then disappears.
+export type Award = { name: string; category: string; years: string; images: { src: string; alt: string }[] };
+export const award: Award | null = {
+  name: "Consumer Choice Award",
+  category: "Lawn Maintenance",
+  years: "2020 & 2026",
+  images: [
+    { src: "/images/award-2020.webp", alt: `2020 Consumer Choice Award letter for ${name}, Lawn Maintenance` },
+    { src: "/images/award-2026.webp", alt: `2026 Consumer Choice Award certificate for ${name}, Lawn Maintenance, ${city}` },
+  ],
+};
+
+export const heroSlides = [
+  { image: "/images/lawn-residential.webp", label: "Lawn & Garden Care", alt: `Freshly striped lawn in front of a ${city} home` },
+  { image: "/images/plow-trucks-commercial.webp", label: "Snow Plowing & Removal", alt: `${name} plow trucks in a cleared commercial lot at night` },
+];
 
 export const nav = [
   { href: "/", label: "Home" },
@@ -107,11 +158,11 @@ export const faqs = [
   },
   {
     q: "Which areas do you serve?",
-    a: "We serve Barrie and the surrounding area. Give us a call and we'll confirm we cover your property.",
+    a: `We serve ${city} and the surrounding area. Give us a call and we'll confirm we cover your property.`,
   },
   {
     q: "Are estimates free?",
-    a: "Yes, every estimate is free. Call 705-721-9335 or send us a message and we'll get back to you with a quote.",
+    a: `Yes, every estimate is free. Call ${phone} or send us a message and we'll get back to you with a quote.`,
   },
 ];
 
@@ -132,14 +183,14 @@ export type ServiceDetail = {
 export const serviceDetails: ServiceDetail[] = [
   {
     slug: "snow-removal-barrie",
-    title: "Snow Plowing & Removal in Barrie",
-    metaTitle: "Snow Removal Barrie | Plowing & Salting | J.T. Property Maintenance",
+    title: `Snow Plowing & Removal in ${city}`,
+    metaTitle: `Snow Removal ${city} | Plowing & Salting | J.T. Property Maintenance`,
     metaDescription:
-      "Residential and commercial snow plowing, snow removal and salting in Barrie. Monthly, seasonal and annual contracts, available 24/7 all winter. Free estimates: 705-721-9335.",
+      `Residential and commercial snow plowing, snow removal and salting in ${city}. Monthly, seasonal and annual contracts, available 24/7 all winter. Free estimates: ${phone}.`,
     image: "/images/plow-trucks-commercial.webp",
     gallery: ["/images/tractor-snowblower.webp", "/images/jt-truck.webp"],
     intro: [
-      "Winter is coming, so make sure you're prepared. The last thing you want in your morning routine is time spent shovelling your driveway. J.T. Property Maintenance provides residential and commercial snow plowing in Barrie so you never have to worry about being snowed in.",
+      `Winter is coming, so make sure you're prepared. The last thing you want in your morning routine is time spent shovelling your driveway. J.T. Property Maintenance provides residential and commercial snow plowing in ${city} so you never have to worry about being snowed in.`,
       "Our team has the equipment for quick, effective plowing and snow removal from parking lots, driveways, sidewalks and more. We work on monthly, seasonal or annual contracts, and one-time visits are available too.",
     ],
     includesTitle: "Winter services",
@@ -159,10 +210,10 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     slug: "lawn-care-barrie",
-    title: "Lawn Care & Grass Cutting in Barrie",
-    metaTitle: "Lawn Care Barrie | Grass Cutting & Lawn Maintenance | J.T. Property Maintenance",
+    title: `Lawn Care & Grass Cutting in ${city}`,
+    metaTitle: `Lawn Care ${city} | Grass Cutting & Lawn Maintenance | J.T. Property Maintenance`,
     metaDescription:
-      "Grass cutting and lawn maintenance in Barrie for homes and businesses. Fertilizing, aeration, overseeding and thatching. 2020 and 2026 Consumer Choice Award winner. Free estimates.",
+      `Grass cutting and lawn maintenance in ${city} for homes and businesses. Fertilizing, aeration, overseeding and thatching. 2020 and 2026 Consumer Choice Award winner. Free estimates.`,
     image: "/images/lawn-residential.webp",
     gallery: ["/images/lawn-commercial.webp", "/images/jt-truck.webp"],
     intro: [
@@ -186,10 +237,10 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     slug: "spring-fall-cleanup-barrie",
-    title: "Spring & Fall Clean-Ups in Barrie",
-    metaTitle: "Spring & Fall Clean-Up Barrie | Leaf Removal | J.T. Property Maintenance",
+    title: `Spring & Fall Clean-Ups in ${city}`,
+    metaTitle: `Spring & Fall Clean-Up ${city} | Leaf Removal | J.T. Property Maintenance`,
     metaDescription:
-      "Spring and fall yard clean-ups in Barrie: large-quantity leaf removal, debris removal, eavestrough cleaning and yard waste pickup. One-time or seasonal contracts. Free estimates.",
+      `Spring and fall yard clean-ups in ${city}: large-quantity leaf removal, debris removal, eavestrough cleaning and yard waste pickup. One-time or seasonal contracts. Free estimates.`,
     image: "/images/lawn-crew.webp",
     gallery: ["/images/stone-walkway.webp", "/images/steps-after.webp"],
     intro: [

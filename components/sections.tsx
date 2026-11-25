@@ -2,32 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { site, type ServiceCard } from "@/lib/site";
+import { heroSlides as slides, site, type ServiceCard } from "@/lib/site";
 import { CheckBadge, Icon } from "./Icon";
 import { Button } from "./ui";
-
-const slides = [
-  { image: "/images/lawn-residential.webp", label: "Lawn & Garden Care", alt: "Freshly striped lawn in front of a Barrie home" },
-  { image: "/images/plow-trucks-commercial.webp", label: "Snow Plowing & Removal", alt: "J.T. Property Maintenance plow trucks in a cleared commercial lot at night" },
-];
 
 // Hero: crossfading background slides with a slow zoom, 5s autoplay (Landora's Swiper timing), paused on hover.
 export function HeroSlider() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
+  const reduce = useReducedMotion();
   useEffect(() => {
-    if (paused) return;
+    if (paused || reduce) return;
     const t = setTimeout(() => setI((n) => (n + 1) % slides.length), 5000);
     return () => clearTimeout(t);
-  }, [i, paused]);
+  }, [i, paused, reduce]);
 
   return (
     <section
       className="relative mx-[15px] mt-[10px] min-h-[720px] overflow-hidden rounded-[12px] bg-dark md:min-h-[820px] lg:min-h-[880px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
       aria-roledescription="carousel"
     >
       <AnimatePresence initial={false}>
@@ -54,7 +52,7 @@ export function HeroSlider() {
           transition={{ duration: 0.7 }}
           className="mb-6 inline-flex w-fit items-center gap-2 rounded-[8px] bg-white/15 px-4 py-2 text-[14px] font-medium tracking-wide text-white backdrop-blur md:text-[17px]"
         >
-          <CheckBadge className="size-[18px] bg-lime text-dark" /> SERVING BARRIE SINCE {site.founded}
+          <CheckBadge className="size-[18px] bg-lime text-dark" /> SERVING {site.city.toUpperCase()} SINCE {site.founded}
         </motion.p>
 
         <h1 className="hero-title max-w-[700px] text-white">
@@ -98,7 +96,7 @@ export function HeroSlider() {
 
         <div className="mt-14 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[15px] text-white md:text-[17px]">
-            {["Residential & Commercial", "Free Estimates", "Year-Round Service"].map((t) => (
+            {site.heroBadges.map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <CheckBadge className="size-[18px] bg-lime text-dark" /> {t}
               </li>

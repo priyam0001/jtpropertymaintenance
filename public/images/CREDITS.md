@@ -12,8 +12,7 @@ All photos are J.T. Property Maintenance's own, taken from their current Wix sit
 | lawn-crew.webp | ba2cd3_c4cf533c65774109bc776e2e53131ff6~mv2.jpg |
 | jt-truck.webp | ba2cd3_6be243e174f0437d964a020f661c4af2~mv2.png |
 | stone-walkway.webp | 770bab_9dbf435d33294679948c4ba4dc650c52~mv2.jpg |
-| winter-steps.webp | 770bab_453e1ae9ebc44a80ab27c0ab4778897b~mv2.jpg |
-| steps-before.webp / steps-after.webp | ba2cd3_6c71fd…, ba2cd3_dc957f… |
+| steps-after.webp | ba2cd3_dc957f… |
 | award-2020.webp | 770bab_3095dfb8bb244b34ae7f8c6369263091~mv2.jpg |
 | award-2026.webp | ba2cd3_bcc9000bafe54015a4703c99d14f5095~mv2.jpg |
 | og.jpg, app/icon.png | Generated from the logo and plow-trucks photo |

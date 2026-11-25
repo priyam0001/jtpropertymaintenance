@@ -5,7 +5,7 @@ import { Marquee } from "@/components/blocks";
 import { Reveal } from "@/components/motion";
 import { Accordion, HeroSlider, ServiceCarousel } from "@/components/sections";
 import { Button, Eyebrow } from "@/components/ui";
-import { faqs, seasonal, serviceCards, site } from "@/lib/site";
+import { award, faqs, seasonal, serviceCards, site } from "@/lib/site";
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
           { src: "/images/lawn-commercial.webp", alt: "Commercial grounds after grass cutting" },
           { src: "/images/tractor-snowblower.webp", alt: "Tractor with snowblower attachment" },
           { src: "/images/stone-walkway.webp", alt: "Flagstone side walkway" },
-          { src: "/images/jt-truck.webp", alt: "J.T. Property Maintenance lawn care truck" },
+          { src: "/images/jt-truck.webp", alt: `${site.name} lawn care truck` },
           { src: "/images/lawn-crew.webp", alt: "Crew planting cedars on a large lawn" },
         ]}
       />
@@ -44,20 +44,20 @@ function About() {
       <div className="container-x grid items-start gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[68px]">
         <Reveal from="left">
           <div className="relative aspect-[618/606] overflow-hidden rounded-[12px]">
-            <Image src="/images/lawn-crew.webp" alt="J.T. Property Maintenance crew planting cedars on a large lawn" fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
+            <Image src="/images/lawn-crew.webp" alt={`${site.name} crew planting cedars on a large lawn`} fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
           </div>
           <div className="mt-8 flex items-center gap-4">
             <CheckBadge className="size-7" />
             <p className="text-[22px] text-dark md:text-[26px]">SINCE — {site.founded}</p>
           </div>
           <p className="mt-4 max-w-lg text-[16px]">
-            Our professional staff has kept Barrie properties looking their best for more than three decades, always prepared with current equipment.
+            Our professional staff has kept {site.city} properties looking their best since {site.founded}, always prepared with current equipment.
           </p>
         </Reveal>
 
         <Reveal from="right" className="lg:pt-10">
-          <Eyebrow>About J.T. Property Maintenance</Eyebrow>
-          <h2>Bringing out the best in Barrie properties</h2>
+          <Eyebrow>About {site.name}</Eyebrow>
+          <h2>Bringing out the best in {site.city} properties</h2>
           <p className="mt-5 text-[16px]">
             Keep your yard and driveway looking great all year round. We provide spring, summer and fall property care, from grass cutting to eavestrough cleaning, and
             monthly to annual snow plowing and removal through the winter, for both residential and commercial properties.
@@ -104,7 +104,7 @@ function WhatWeDo() {
 
 function WhyChoose() {
   const points: { icon: IconName; title: string; text: string }[] = [
-    { icon: "award", title: "Consumer Choice Award", text: "Chosen by Barrie consumers and businesses as the Consumer Choice Award winner for Lawn Maintenance in 2020 and 2026." },
+    ...(award ? [{ icon: "award" as const, title: award.name, text: `Chosen by ${site.city} consumers and businesses as the ${award.name} winner for ${award.category} (${award.years}).` }] : []),
     { icon: "clipboard", title: "Free Estimates", text: "Every quote is free and comes with no obligation. Call or send a message to get started." },
     { icon: "building", title: "Residential & Commercial", text: "Homes, driveways, parking lots and sidewalks: we maintain properties of every size." },
   ];
@@ -113,20 +113,22 @@ function WhyChoose() {
       <div className="container-x grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-[60px]">
         <Reveal from="left" className="relative">
           <div className="relative aspect-[422/560] overflow-hidden rounded-[12px]">
-            <Image src="/images/tractor-snowblower.webp" alt="J.T. Property Maintenance tractor with snowblower at sunset" fill sizes="(min-width:1024px) 520px, 100vw" className="object-cover" />
+            <Image src="/images/tractor-snowblower.webp" alt={`${site.name} tractor with snowblower at sunset`} fill sizes="(min-width:1024px) 520px, 100vw" className="object-cover" />
           </div>
-          <div className="absolute right-4 bottom-4 left-4 flex items-center gap-4 rounded-[12px] bg-white/95 p-4 backdrop-blur sm:right-auto sm:max-w-xs">
-            <Image src="/images/award-2026.webp" alt="2026 Consumer Choice Award certificate" width={54} height={72} className="h-[72px] w-auto rounded-[4px]" />
-            <p className="text-[15px] leading-snug text-dark">
-              <span className="font-semibold">Consumer Choice Award</span>
-              <br />
-              Lawn Maintenance · 2020 &amp; 2026
-            </p>
-          </div>
+          {award && (
+            <div className="absolute right-4 bottom-4 left-4 flex items-center gap-4 rounded-[12px] bg-white/95 p-4 backdrop-blur sm:right-auto sm:max-w-xs">
+              <Image src={award.images.at(-1)!.src} alt={award.images.at(-1)!.alt} width={54} height={72} className="h-[72px] w-auto rounded-[4px]" />
+              <p className="text-[15px] leading-snug text-dark">
+                <span className="font-semibold">{award.name}</span>
+                <br />
+                {award.category} · {award.years}
+              </p>
+            </div>
+          )}
         </Reveal>
         <Reveal from="right">
           <Eyebrow>Why Choose Us</Eyebrow>
-          <h2>Why Barrie property owners choose J.T.</h2>
+          <h2>Why {site.city} property owners choose {site.shortName}</h2>
           <div className="mt-10 space-y-5">
             {points.map((p) => (
               <div key={p.title} className="group flex gap-5 rounded-[12px] bg-cream p-6 transition-colors duration-300 hover:bg-primary md:p-8">

@@ -9,6 +9,7 @@ const field = "w-full rounded-[10px] border border-line bg-white px-5 py-4 text-
 
 export function ContactForm() {
   const [state, action, pending] = useActionState<LeadState, FormData>(submitLead, null);
+  const v = state?.values;
 
   if (state?.ok) {
     return (
@@ -20,21 +21,21 @@ export function ContactForm() {
   }
 
   return (
-    <form action={action} className="grid gap-5 sm:grid-cols-2" noValidate={false}>
-      <Field label="Name" name="name" autoComplete="name" required />
-      <Field label="Phone" name="phone" type="tel" autoComplete="tel" required />
-      <Field label="Email" name="email" type="email" autoComplete="email" required />
-      <Field label="Address" name="address" autoComplete="street-address" />
+    <form action={action} className="grid gap-5 sm:grid-cols-2">
+      <Field label="Name" name="name" autoComplete="name" required value={v?.name} />
+      <Field label="Phone" name="phone" type="tel" autoComplete="tel" required minLength={10} value={v?.phone} />
+      <Field label="Email" name="email" type="email" autoComplete="email" required value={v?.email} />
+      <Field label="Address" name="address" autoComplete="street-address" value={v?.address} />
       <label className="sm:col-span-2">
         <span className="mb-2 block text-[15px] font-medium text-dark">Service</span>
-        <select name="service" className={field} defaultValue="">
+        <select name="service" className={field} defaultValue={v?.service ?? ""} key={v?.service}>
           <option value="" disabled>Choose a service</option>
           {quoteServices.map((s) => <option key={s}>{s}</option>)}
         </select>
       </label>
       <label className="sm:col-span-2">
         <span className="mb-2 block text-[15px] font-medium text-dark">Message</span>
-        <textarea name="message" rows={5} className={field} placeholder="Tell us about your property and what you need" />
+        <textarea name="message" rows={5} className={field} defaultValue={v?.message} placeholder="Tell us about your property and what you need" />
       </label>
       {/* honeypot */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
@@ -55,13 +56,13 @@ export function ContactForm() {
   );
 }
 
-function Field({ label, name, type = "text", required = false, autoComplete }: { label: string; name: string; type?: string; required?: boolean; autoComplete?: string }) {
+function Field({ label, name, type = "text", required = false, autoComplete, minLength, value }: { label: string; name: string; type?: string; required?: boolean; autoComplete?: string; minLength?: number; value?: string }) {
   return (
     <label>
       <span className="mb-2 block text-[15px] font-medium text-dark">
         {label} {required && <span className="text-primary">*</span>}
       </span>
-      <input name={name} type={type} required={required} autoComplete={autoComplete} className={field} />
+      <input name={name} type={type} required={required} autoComplete={autoComplete} minLength={minLength} defaultValue={value} className={field} />
     </label>
   );
 }

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps<"/services/[slug]">
   const { slug } = await params;
   const d = serviceDetails.find((x) => x.slug === slug);
   if (!d) return {};
-  return { title: d.metaTitle, description: d.metaDescription, alternates: { canonical: `/services/${d.slug}` }, openGraph: { images: [d.image] } };
+  return { title: d.metaTitle, description: d.metaDescription, alternates: { canonical: `/services/${d.slug}` } };
 }
 
 export default async function ServiceDetailPage({ params }: PageProps<"/services/[slug]">) {
@@ -27,7 +27,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/services
 
   return (
     <>
-      <PageHero title={d.title} crumb={d.title.replace(/ in Barrie$/, "")} image={d.image} />
+      <PageHero title={d.title} crumb={d.title.replace(` in ${site.city}`, "")} image={d.image} />
 
       <section className="section-y">
         <div className="container-x grid items-start gap-10 lg:grid-cols-[0.42fr_1fr] lg:gap-[50px]">
@@ -47,7 +47,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/services
                           active ? "bg-primary text-white" : "bg-white text-dark hover:bg-primary hover:text-white"
                         }`}
                       >
-                        {s.title.replace(/ in Barrie$/, "")}
+                        {s.title.replace(` in ${site.city}`, "")}
                         <Icon name="arrowRight" className="size-4" />
                       </Link>
                     </li>

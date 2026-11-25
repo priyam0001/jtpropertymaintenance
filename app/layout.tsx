@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer, MobileCallBar } from "@/components/Footer";
 import { SmoothScroll } from "@/components/motion";
-import { seasonal, site } from "@/lib/site";
+import { award, pageMeta, seasonal, site } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
@@ -11,7 +11,7 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "sw
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Property Maintenance Barrie | Lawn Care & Snow Removal | J.T. Property Maintenance",
+    default: pageMeta.home.title,
     template: "%s",
   },
   description: site.description,
@@ -19,27 +19,27 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: "en_CA",
-    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: site.name }],
+    images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
   twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
 };
 
-export const viewport: Viewport = { themeColor: "#005b2d" };
+export const viewport: Viewport = { themeColor: "#005b2d" }; // keep in sync with --color-primary in globals.css
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LandscapingBusiness",
   name: site.name,
   url: site.url,
-  telephone: "+1-705-721-9335",
+  telephone: site.phoneHref.replace("tel:", ""),
   email: site.email,
-  image: `${site.url}/images/og.jpg`,
-  logo: `${site.url}/images/jt-logo.png`,
+  image: `${site.url}${site.ogImage}`,
+  logo: `${site.url}${site.logo.src}`,
   foundingDate: String(site.founded),
-  areaServed: { "@type": "City", name: "Barrie", containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" } },
-  address: { "@type": "PostalAddress", addressLocality: "Barrie", addressRegion: "ON", addressCountry: "CA" },
-  award: ["Consumer Choice Award 2020 – Lawn Maintenance", "Consumer Choice Award 2026 – Lawn Maintenance"],
+  areaServed: { "@type": "City", name: site.city, containedInPlace: { "@type": "AdministrativeArea", name: site.region } },
+  address: { "@type": "PostalAddress", addressLocality: site.city, addressRegion: site.regionCode, addressCountry: site.country },
+  award: award ? `${award.name} – ${award.category} (${award.years})` : undefined,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Property maintenance services",

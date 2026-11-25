@@ -4,12 +4,10 @@ import { CtaBand, PageHero } from "@/components/blocks";
 import { CheckBadge, Icon, type IconName } from "@/components/Icon";
 import { Reveal } from "@/components/motion";
 import { Eyebrow } from "@/components/ui";
-import { site } from "@/lib/site";
+import { award, pageMeta, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Us | Barrie Property Maintenance Since 1995 | J.T. Property Maintenance",
-  description:
-    "J.T. Property Maintenance has served Barrie since 1995 with year-round lawn care, landscaping and snow removal. 2020 and 2026 Consumer Choice Award winner for Lawn Maintenance.",
+  ...pageMeta.about,
   alternates: { canonical: "/about" },
 };
 
@@ -31,15 +29,15 @@ export default function AboutPage() {
               <Image src="/images/stone-walkway.webp" alt="Flagstone walkway beside a brick home" fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
             </div>
             <div className="absolute -bottom-6 left-6 rounded-[12px] bg-primary px-7 py-5 text-white">
-              <p className="text-[15px] text-white/80">Serving Barrie since</p>
+              <p className="text-[15px] text-white/80">Serving {site.city} since</p>
               <p className="text-[40px] leading-none font-bold text-lime">{site.founded}</p>
             </div>
           </Reveal>
           <Reveal from="right">
             <Eyebrow>Our Story</Eyebrow>
-            <h2>Keeping Barrie properties in pristine shape since {site.founded}</h2>
+            <h2>Keeping {site.city} properties in pristine shape since {site.founded}</h2>
             <p className="mt-5 text-[16px]">
-              From spring planting to winter snow, J.T. Property Maintenance has you covered. We take great pride in keeping your property in pristine shape with
+              From spring planting to winter snow, {site.name} has you covered. We take great pride in keeping your property in pristine shape with
               planting, landscaping, routine maintenance and grooming, and timely, efficient snow removal.
             </p>
             <p className="mt-4 text-[16px]">
@@ -75,21 +73,20 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {award && (
       <section className="section-y">
         <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-[68px]">
           <Reveal from="left">
             <Eyebrow>Recognition</Eyebrow>
-            <h2>Consumer Choice Award: Lawn Maintenance, 2020 &amp; 2026</h2>
+            <h2>
+              {award.name}: {award.category}, {award.years}
+            </h2>
             <p className="mt-5 text-[16px]">
-              Consumers and businesses in the Barrie region selected J.T. Property Maintenance as the Consumer Choice Award recipient in the Lawn Maintenance
-              category in 2020, and again in 2026.
+              Consumers and businesses in the {site.city} region selected {site.name} as the {award.name} recipient in the {award.category} category ({award.years}).
             </p>
           </Reveal>
           <Reveal from="right" className="grid grid-cols-2 gap-5">
-            {[
-              { src: "/images/award-2020.webp", alt: "2020 Consumer Choice Award letter for J T Property Maintenance, Lawn Maintenance" },
-              { src: "/images/award-2026.webp", alt: "2026 Consumer Choice Award certificate for JT Property Maintenance, Lawn Maintenance, Barrie" },
-            ].map((a) => (
+            {award.images.map((a) => (
               <div key={a.src} className="relative aspect-[3/4] overflow-hidden rounded-[12px] border border-line bg-cream">
                 <Image src={a.src} alt={a.alt} fill sizes="(min-width:1024px) 330px, 50vw" className="object-cover" />
               </div>
@@ -97,6 +94,7 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+      )}
 
       <CtaBand />
     </>
