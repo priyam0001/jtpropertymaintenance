@@ -1,26 +1,63 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Landora tokens (recon) mapped to JT. Logo is white-only, so Landora's green roles are kept. */
+@theme {
+  --color-primary: #005b2d;
+  --color-primary-deep: #00401f;
+  --color-dark: #121212;
+  --color-body: #555e62;
+  --color-accent: #ffa033;
+  --color-lime: #c7f268;
+  --color-cream: #f6f4e8;
+  --color-line: #1212121a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 12px;
+  --radius-btn: 10px;
+  --radius-chip: 6px;
+
+  --animate-marquee: marquee 28s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-white font-sans text-body antialiased;
+    font-size: 16px;
+    line-height: 1.5;
   }
+  h1, h2, h3, h4, h5, h6 { @apply text-dark; }
+
+  /* Landora scale: base → ≤1366 → ≤1024 → ≤767 */
+  h1 { font-size: 24px; font-weight: 700; line-height: 1.1; }
+  h2 { font-size: 22px; font-weight: 600; line-height: 1.2; }
+  h3 { font-size: 20px; font-weight: 600; line-height: 1.15; }
+  h4 { font-size: 18px; font-weight: 500; line-height: 1.25; }
+  @media (min-width: 768px) {
+    h1 { font-size: 28px; } h2 { font-size: 28px; } h3 { font-size: 24px; } h4 { font-size: 22px; }
+  }
+  @media (min-width: 1025px) {
+    h1 { font-size: 40px; } h2 { font-size: 30px; } h3 { font-size: 22px; } h4 { font-size: 17px; }
+  }
+  @media (min-width: 1367px) {
+    h1 { font-size: 60px; } h2 { font-size: 50px; } h3 { font-size: 36px; } h4 { font-size: 28px; }
+  }
+
+  :focus-visible { outline: 2px solid var(--color-lime); outline-offset: 2px; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1320px] px-5; }
+  .section-y { @apply py-16 lg:py-[90px]; }
+  /* Hero h1 stays large on tablets/laptops like Landora's hero */
+  .hero-title { font-size: 34px; }
+  @media (min-width: 768px) { .hero-title { font-size: 44px; } }
+  @media (min-width: 1025px) { .hero-title { font-size: 52px; } }
+  @media (min-width: 1367px) { .hero-title { font-size: 60px; } }
 }

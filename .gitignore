@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw client downloads (optimised copies live in public/images)
+/_src/
+# Landora reference screenshots: third-party template, kept local only
+/recon/landora/

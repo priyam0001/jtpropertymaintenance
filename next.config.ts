@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
@@ -11,6 +10,10 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+  // Old Wix URL keeps its ranking. Next issues 308 for permanent redirects; search engines treat it as a 301.
+  async redirects() {
+    return [{ source: "/contact-us", destination: "/contact", permanent: true }];
   },
 };
 
