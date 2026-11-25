@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CheckBadge, Icon, type IconName } from "@/components/Icon";
 import { Marquee } from "@/components/blocks";
 import { Reveal } from "@/components/motion";
@@ -147,9 +148,9 @@ function WhyChoose() {
 
 function OurWork() {
   const work = [
-    { src: "/images/lawn-commercial.webp", title: "Commercial Grounds", text: "Business property grounds cut, edged and cleaned up." },
-    { src: "/images/plow-trucks-commercial.webp", title: "Commercial Lot Plowing", text: "Our plow trucks after clearing a plaza parking lot." },
-    { src: "/images/lawn-residential.webp", title: "Residential Lawn Care", text: "Clean stripes, trimmed edges and every clipping picked up." },
+    { src: "/images/lawn-commercial.webp", title: "Commercial Grounds", text: "Business property grounds cut, edged and cleaned up.", href: "/services/lawn-care-barrie" },
+    { src: "/images/plow-trucks-commercial.webp", title: "Commercial Lot Plowing", text: "Our plow trucks after clearing a plaza parking lot.", href: "/services/snow-removal-barrie" },
+    { src: "/images/lawn-residential.webp", title: "Residential Lawn Care", text: "Clean stripes, trimmed edges and every clipping picked up.", href: "/services/lawn-care-barrie" },
   ];
   return (
     <section className="section-y bg-cream">
@@ -161,7 +162,7 @@ function OurWork() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {work.map((w, n) => (
             <Reveal key={w.title} delay={n * 0.15}>
-              <article className="group relative aspect-[413/562] overflow-hidden rounded-[12px] max-md:aspect-[4/3.6]">
+              <Link href={w.href} className="group relative block aspect-[413/562] overflow-hidden rounded-[12px] outline-offset-4 focus-visible:outline-2 focus-visible:outline-primary max-md:aspect-[4/3.6]">
                 <Image src={w.src} alt={w.title} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -172,7 +173,7 @@ function OurWork() {
                   <h3 className="text-[22px] text-white lg:text-[26px]">{w.title}</h3>
                   <p className="mt-3 text-[16px] text-white/90">{w.text}</p>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
