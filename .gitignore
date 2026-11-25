@@ -44,3 +44,5 @@ next-env.d.ts
 /_src/
 # Landora reference screenshots: third-party template, kept local only
 /recon/landora/
+
+.vercel
