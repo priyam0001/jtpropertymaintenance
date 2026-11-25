@@ -4,9 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBand, PageHero } from "@/components/blocks";
 import { CheckBadge, Icon } from "@/components/Icon";
-import { Reveal } from "@/components/motion";
 import { Accordion } from "@/components/sections";
-import { Button } from "@/components/ui";
+import { Button, Reveal } from "@/components/ui";
 import { faqs, serviceDetails, site } from "@/lib/site";
 
 export function generateStaticParams() {

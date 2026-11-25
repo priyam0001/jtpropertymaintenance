@@ -1,14 +1,13 @@
 import Image from "next/image";
 import { site } from "@/lib/site";
-import { Reveal } from "./motion";
+import { Button, Reveal } from "./ui";
 import { Snow } from "./Snow";
-import { Button } from "./ui";
 
 // Inner-page banner: dark rounded image banner with the page title.
 export function PageHero({ title, image, snow = false }: { title: string; image: string; snow?: boolean }) {
   return (
     <section className="relative mx-[15px] mt-[10px] overflow-hidden rounded-[12px] bg-dark">
-      <Image src={image} alt="" fill sizes="100vw" className="object-cover" preload />
+      <Image src={image} alt="" fill sizes="100vw" className="object-cover" loading="eager" fetchPriority="high" />
       <div className="absolute inset-0 bg-dark/70" />
       {snow && <Snow />}
       <div className="container-x relative flex min-h-[420px] flex-col items-center justify-center pt-28 pb-14 text-center md:min-h-[480px]">

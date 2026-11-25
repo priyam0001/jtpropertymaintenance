@@ -47,11 +47,22 @@ npm run build
 
 Server region is Montréal (`yul1`, `vercel.json`). Change it for clients outside Canada/US-east.
 
+## Modern web guidance
+
+When you use this template for a new client, go through Chrome's [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance) before you add or change a feature (menus, carousels, accordions, forms, images, animations). Each guide gives the native, standards-based pattern and the fallbacks it needs. Search and read guides from the terminal:
+
+```bash
+npx -y modern-web-guidance@latest search "mobile navigation drawer"
+npx -y modern-web-guidance@latest retrieve "navigation-drawer"
+```
+
+On Windows use `npx.cmd`. Claude Code users can install the plugin instead: `claude plugin marketplace add GoogleChrome/modern-web-guidance`, then `claude plugin install modern-web-guidance@googlechrome`.
+
 ## Libraries & references
 
 | Link | Status here |
 |---|---|
-| [Lenis](https://github.com/darkroomengineering/lenis) | **Used.** Smooth scroll (`components/SmoothScroll.tsx`). Carousels use `data-lenis-prevent-horizontal` so touch swipes work. |
+| [Lenis](https://github.com/darkroomengineering/lenis) | **Used.** Smooth scroll (`SmoothScroll` in `components/motion.tsx`). Carousels use `data-lenis-prevent-horizontal` so touch swipes work. |
 | [Vanta](https://github.com/tengbao/vanta) | Looked at, not used. Needs three.js (~150 KB), not updated since 2024, heavy on phone batteries. |
 | [React Bits](https://github.com/DavidHDev/react-bits) | Ideas only. Licence is MIT + Commons Clause, which forbids redistributing its components in a template, so no code is copied into this repo. `components/Snow.tsx` is our own code, inspired by its PixelSnow. |
 | [Hallmark](https://github.com/Nutlope/hallmark) | Saved for later. Not evaluated yet. |

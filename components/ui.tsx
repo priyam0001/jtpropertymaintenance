@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Icon } from "./Icon";
 
 type ButtonProps = { href: string; children: ReactNode; variant?: "lime" | "dark" | "outline"; className?: string };
@@ -39,5 +39,25 @@ export function Eyebrow({ children, light = false }: { children: ReactNode; ligh
       </span>
       {children}
     </p>
+  );
+}
+
+// Landora's fadeInUp / Left / Right as a CSS scroll-driven animation (globals.css .reveal).
+// Content is visible without JS; browsers without view() timelines or with reduced motion skip the effect.
+export function Reveal({
+  children,
+  from = "up",
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  from?: "up" | "left" | "right";
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <div className={`reveal reveal-${from} ${className}`} style={delay ? ({ "--reveal-delay": delay } as CSSProperties) : undefined}>
+      {children}
+    </div>
   );
 }

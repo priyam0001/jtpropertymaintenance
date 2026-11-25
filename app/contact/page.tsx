@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/blocks";
 import { Icon } from "@/components/Icon";
-import { Reveal } from "@/components/motion";
-import { Eyebrow } from "@/components/ui";
+import { Eyebrow, Reveal } from "@/components/ui";
 import { pageMeta, site } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 

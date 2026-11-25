@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand, PageHero } from "@/components/blocks";
 import { CheckBadge, Icon, type IconName } from "@/components/Icon";
-import { Reveal } from "@/components/motion";
-import { Eyebrow } from "@/components/ui";
+import { Eyebrow, Reveal } from "@/components/ui";
 import { award, pageMeta, site } from "@/lib/site";
 
 export const metadata: Metadata = {

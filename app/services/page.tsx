@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, PageHero } from "@/components/blocks";
 import { CheckBadge, Icon } from "@/components/Icon";
-import { Reveal } from "@/components/motion";
 import { Snow } from "@/components/Snow";
-import { Eyebrow } from "@/components/ui";
+import { Eyebrow, Reveal } from "@/components/ui";
 import { pageMeta, seasonal, serviceCards, site } from "@/lib/site";
 
 export const metadata: Metadata = {

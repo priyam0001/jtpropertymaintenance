@@ -3,9 +3,8 @@ import Link from "next/link";
 import { CheckBadge, Icon, type IconName } from "@/components/Icon";
 import { Marquee } from "@/components/blocks";
 import { Snow } from "@/components/Snow";
-import { Reveal } from "@/components/motion";
 import { Accordion, HeroSlider, ServiceCarousel } from "@/components/sections";
-import { Button, Eyebrow } from "@/components/ui";
+import { Button, Eyebrow, Reveal } from "@/components/ui";
 import { award, faqs, seasonal, serviceCards, site } from "@/lib/site";
 
 export default function Home() {
