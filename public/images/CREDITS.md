@@ -1,18 +1,14 @@
 # Image credits
 
-All photos are J.T. Property Maintenance's own, taken from their current Wix site (jtpropertymaintenance.ca), then auto-rotated, resized and converted to WebP. No stock or Landora demo images are used.
+Every image here is a generated placeholder (green gradient with a label naming the file and the size to use).
+Replace each one with the client's own photos before launch, and list where each new photo came from in this file.
 
-| File | Original (static.wixstatic.com/media/…) |
+| File | Used for |
 |---|---|
-| jt-logo.png | 28ba5f_9bc7ce35c66b44898f2dc690ae040ff0~mv2.png |
-| tractor-snowblower.webp | 28ba5f_fcd7a981f772454e83f4541a5226b992~mv2.jpeg |
-| plow-trucks-commercial.webp | cadab9_ac212c8a7bee4690b43f5d0b78af8b9a~mv2.jpg |
-| lawn-residential.webp | ba2cd3_788f362e0ddf4baea3dc67cf619c2500~mv2.jpg |
-| lawn-commercial.webp | ba2cd3_4d4863401f8e44dcbe69f5631ac1a747~mv2.jpg |
-| lawn-crew.webp | ba2cd3_c4cf533c65774109bc776e2e53131ff6~mv2.jpg |
-| jt-truck.webp | ba2cd3_6be243e174f0437d964a020f661c4af2~mv2.png |
-| stone-walkway.webp | 770bab_9dbf435d33294679948c4ba4dc650c52~mv2.jpg |
-| steps-after.webp | ba2cd3_dc957f… |
-| award-2020.webp | 770bab_3095dfb8bb244b34ae7f8c6369263091~mv2.jpg |
-| award-2026.webp | ba2cd3_bcc9000bafe54015a4703c99d14f5095~mv2.jpg |
-| og.jpg, app/icon.png | Generated from the logo and plow-trucks photo |
+| logo.png | Header and footer logo: a white mark on a transparent background (it sits on a green tile) |
+| lawn-residential.webp, plow-trucks-commercial.webp | Hero slides 1 and 2 (`heroSlides` in `lib/site.ts`) |
+| lawn-commercial.webp, lawn-crew.webp, truck.webp | Service cards, gallery and page banners |
+| tractor-snowblower.webp, stone-walkway.webp, steps-after.webp | About and service-page photos |
+| og.jpg | 1200×630 share image for social links |
+
+Do not use stock photos of other companies' work, or demo images from the design reference (Landora).

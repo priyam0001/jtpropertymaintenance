@@ -23,7 +23,7 @@ export default function Home() {
           { src: "/images/lawn-commercial.webp", alt: "Commercial grounds after grass cutting" },
           { src: "/images/tractor-snowblower.webp", alt: "Tractor with snowblower attachment" },
           { src: "/images/stone-walkway.webp", alt: "Flagstone side walkway" },
-          { src: "/images/jt-truck.webp", alt: `${site.name} lawn care truck` },
+          { src: "/images/truck.webp", alt: `${site.name} lawn care truck` },
           { src: "/images/lawn-crew.webp", alt: "Crew planting cedars on a large lawn" },
         ]}
       />
@@ -150,9 +150,9 @@ function WhyChoose() {
 
 function OurWork() {
   const work = [
-    { src: "/images/lawn-commercial.webp", title: "Commercial Grounds", text: "Business property grounds cut, edged and cleaned up.", href: "/services/lawn-care-barrie" },
-    { src: "/images/plow-trucks-commercial.webp", title: "Commercial Lot Plowing", text: "Our plow trucks after clearing a plaza parking lot.", href: "/services/snow-removal-barrie" },
-    { src: "/images/lawn-residential.webp", title: "Residential Lawn Care", text: "Clean stripes, trimmed edges and every clipping picked up.", href: "/services/lawn-care-barrie" },
+    { src: "/images/lawn-commercial.webp", title: "Commercial Grounds", text: "Business property grounds cut, edged and cleaned up.", href: "/services/lawn-care" },
+    { src: "/images/plow-trucks-commercial.webp", title: "Commercial Lot Plowing", text: "Our plow trucks after clearing a plaza parking lot.", href: "/services/snow-removal" },
+    { src: "/images/lawn-residential.webp", title: "Residential Lawn Care", text: "Clean stripes, trimmed edges and every clipping picked up.", href: "/services/lawn-care" },
   ];
   return (
     <section className="section-y bg-cream">

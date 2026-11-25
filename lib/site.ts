@@ -4,19 +4,19 @@
 // Every fact here came from the client; never invent reviews, stats or awards.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const name = "J.T. Property Maintenance";
-const city = "Barrie";
-const phone = "705-721-9335";
-const founded = 1995;
+const name = "Your Company Name";
+const city = "Your City";
+const phone = "555-555-0100"; // 555-01xx is reserved for fiction
+const founded = 2010;
 
 export const site = {
   name,
-  shortName: "J.T.",
-  wordmark: ["J.T. Property", "Maintenance"], // logo text, two lines on phones
-  url: "https://www.jtpropertymaintenance.ca", // production domain: canonicals, sitemap, OG
+  shortName: "Your Co.",
+  wordmark: ["Your Company", "Name"], // logo text, two lines on phones
+  url: "https://www.example.com", // production domain: canonicals, sitemap, OG
   phone,
-  phoneHref: "tel:+17057219335", // E.164, also used for JSON-LD
-  email: "jtproperty@hotmail.com",
+  phoneHref: "tel:+15555550100", // E.164, also used for JSON-LD
+  email: "hello@example.com",
   founded,
   city,
   region: "Ontario",
@@ -26,7 +26,7 @@ export const site = {
   tagline: "Bringing Out the Best in Your Property All Year Long",
   description: `Year-round landscaping and property maintenance in ${city} since ${founded}: grass cutting, spring and fall clean-ups, snow plowing, snow removal and salting for homes and businesses.`,
   footerLine: `Lawn care, landscaping & snow removal in ${city}, Ontario`,
-  logo: { src: "/images/jt-logo.png", width: 433, height: 558 },
+  logo: { src: "/images/logo.png", width: 400, height: 400 }, // white mark on transparent; sits on a green tile
   ogImage: "/images/og.jpg", // 1200×630 JPG
   heroBadges: ["Residential & Commercial", "Free Estimates", "Year-Round Service"],
   hours: [
@@ -37,15 +37,9 @@ export const site = {
 
 // Set to null when the client has no award: every award block and award sentence on the site then disappears.
 export type Award = { name: string; category: string; years: string; images: { src: string; alt: string }[] };
-export const award: Award | null = {
-  name: "Consumer Choice Award",
-  category: "Lawn Maintenance",
-  years: "2020 & 2026",
-  images: [
-    { src: "/images/award-2020.webp", alt: `2020 Consumer Choice Award letter for ${name}, Lawn Maintenance` },
-    { src: "/images/award-2026.webp", alt: `2026 Consumer Choice Award certificate for ${name}, Lawn Maintenance, ${city}` },
-  ],
-};
+export const award = null as Award | null; // "as" keeps the Award type; a plain null would narrow it away
+// Example: { name: "Consumer Choice Award", category: "Lawn Maintenance", years: "2020 & 2026",
+//   images: [{ src: "/images/award-2026.webp", alt: `2026 Consumer Choice Award certificate for ${name}` }] }
 const awardYears = award?.years.replace(" & ", " and ");
 // " 2020 and 2026 Consumer Choice Award winner for Lawn Maintenance." or "" when there is no award.
 const awardLine = award ? ` ${awardYears} ${award.name} winner for ${award.category}.` : "";
@@ -78,9 +72,9 @@ export const nav = [
     href: "/services",
     label: "Services",
     children: [
-      { href: "/services/snow-removal-barrie", label: "Snow Plowing & Removal" },
-      { href: "/services/lawn-care-barrie", label: "Lawn Care & Grass Cutting" },
-      { href: "/services/spring-fall-cleanup-barrie", label: "Spring & Fall Clean-Ups" },
+      { href: "/services/snow-removal", label: "Snow Plowing & Removal" },
+      { href: "/services/lawn-care", label: "Lawn Care & Grass Cutting" },
+      { href: "/services/spring-fall-cleanup", label: "Spring & Fall Clean-Ups" },
       { href: "/services", label: "All Services" },
     ],
   },
@@ -104,25 +98,25 @@ export const serviceCards: ServiceCard[] = [
     title: "Snow Plowing & Removal",
     text: "Residential and commercial plowing for driveways, parking lots and sidewalks, on monthly to annual contracts.",
     image: "/images/plow-trucks-commercial.webp",
-    href: "/services/snow-removal-barrie",
+    href: "/services/snow-removal",
   },
   {
     title: "Salting & Ice Control",
     text: "Salting once the snow is cleared, so ice doesn't build up and your property stays safe for visitors and customers.",
     image: "/images/tractor-snowblower.webp",
-    href: "/services/snow-removal-barrie#salting",
+    href: "/services/snow-removal#salting",
   },
   {
     title: "Lawn Maintenance & Grass Cutting",
     text: "Regular grass cutting and lawn care for homes and businesses, with every clipping picked up before we leave.",
     image: "/images/lawn-residential.webp",
-    href: "/services/lawn-care-barrie",
+    href: "/services/lawn-care",
   },
   {
     title: "Spring & Fall Clean-Ups",
     text: "Leaves, sticks, debris and yard waste cleared away each season, including large-quantity leaf removal.",
     image: "/images/lawn-crew.webp",
-    href: "/services/spring-fall-cleanup-barrie",
+    href: "/services/spring-fall-cleanup",
   },
 ];
 
@@ -186,15 +180,15 @@ export type ServiceDetail = {
 
 export const serviceDetails: ServiceDetail[] = [
   {
-    slug: "snow-removal-barrie",
+    slug: "snow-removal", // tip: add the city for local SEO, e.g. snow-removal-barrie
     title: `Snow Plowing & Removal in ${city}`,
-    metaTitle: `Snow Removal ${city} | Plowing & Salting | J.T. Property Maintenance`,
+    metaTitle: `Snow Removal ${city} | Plowing & Salting | ${name}`,
     metaDescription:
       `Residential and commercial snow plowing, snow removal and salting in ${city}. Monthly, seasonal and annual contracts, available 24/7 all winter. Free estimates: ${phone}.`,
     image: "/images/plow-trucks-commercial.webp",
-    gallery: ["/images/tractor-snowblower.webp", "/images/jt-truck.webp"],
+    gallery: ["/images/tractor-snowblower.webp", "/images/truck.webp"],
     intro: [
-      `Winter is coming, so make sure you're prepared. The last thing you want in your morning routine is time spent shovelling your driveway. J.T. Property Maintenance provides residential and commercial snow plowing in ${city} so you never have to worry about being snowed in.`,
+      `Winter is coming, so make sure you're prepared. The last thing you want in your morning routine is time spent shovelling your driveway. ${name} provides residential and commercial snow plowing in ${city} so you never have to worry about being snowed in.`,
       "Our team has the equipment for quick, effective plowing and snow removal from parking lots, driveways, sidewalks and more. We work on monthly, seasonal or annual contracts, and one-time visits are available too.",
     ],
     includesTitle: "Winter services",
@@ -214,13 +208,13 @@ export const serviceDetails: ServiceDetail[] = [
     snow: true,
   },
   {
-    slug: "lawn-care-barrie",
+    slug: "lawn-care",
     title: `Lawn Care & Grass Cutting in ${city}`,
-    metaTitle: `Lawn Care ${city} | Grass Cutting & Lawn Maintenance | J.T. Property Maintenance`,
+    metaTitle: `Lawn Care ${city} | Grass Cutting & Lawn Maintenance | ${name}`,
     metaDescription:
       `Grass cutting and lawn maintenance in ${city} for homes and businesses. Fertilizing, aeration, overseeding and thatching.${awardLine} Free estimates.`,
     image: "/images/lawn-residential.webp",
-    gallery: ["/images/lawn-commercial.webp", "/images/jt-truck.webp"],
+    gallery: ["/images/lawn-commercial.webp", "/images/truck.webp"],
     intro: [
       "You have a busy schedule, and yard work is the last thing you want to spend your time off on. After a hectic week, let our team take care of the time-consuming lawn chores and keep your yard clean and orderly every visit.",
       `We cut grass for residential and commercial properties and pick up all clippings, leaves and other yard waste, so your yard and driveway are left in pristine condition.${award ? ` ${name} won the ${awardYears} ${award.name} in the ${award.category} category.` : ""}`,
@@ -241,9 +235,9 @@ export const serviceDetails: ServiceDetail[] = [
     hours: "Summer hours (April–October): Monday–Friday, 9:00 AM–5:00 PM",
   },
   {
-    slug: "spring-fall-cleanup-barrie",
+    slug: "spring-fall-cleanup",
     title: `Spring & Fall Clean-Ups in ${city}`,
-    metaTitle: `Spring & Fall Clean-Up ${city} | Leaf Removal | J.T. Property Maintenance`,
+    metaTitle: `Spring & Fall Clean-Up ${city} | Leaf Removal | ${name}`,
     metaDescription:
       `Spring and fall yard clean-ups in ${city}: large-quantity leaf removal, debris removal, eavestrough cleaning and yard waste pickup. One-time or seasonal contracts. Free estimates.`,
     image: "/images/lawn-crew.webp",

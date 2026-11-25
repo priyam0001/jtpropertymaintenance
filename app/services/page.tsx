@@ -30,7 +30,7 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal from="right">
             <div className="relative aspect-[16/10] overflow-hidden rounded-[12px]">
-              <Image src="/images/jt-truck.webp" alt={`${site.name} lawn care truck`} fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
+              <Image src="/images/truck.webp" alt={`${site.name} lawn care truck`} fill sizes="(min-width:1024px) 620px, 100vw" className="object-cover" />
             </div>
           </Reveal>
         </div>
