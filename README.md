@@ -13,7 +13,7 @@ Each client gets its own repo and Vercel project. This repo stays generic: fixes
 go here first; anything only one client needs goes in that client's repo.
 
 ```bash
-git clone https://github.com/priyam0001/property-site-template.git acme-lawn-care
+git clone https://github.com/priyam0001/property-site-template-repo-repo.git acme-lawn-care
 cd acme-lawn-care
 git remote rename origin template          # keep a link back to the template
 git remote add origin https://github.com/priyam0001/acme-lawn-care.git   # create this empty repo on GitHub first
@@ -32,7 +32,7 @@ git merge template/main      # conflicts are usually only in lib/site.ts or imag
 GitHub's "Use this template" button and the Vercel button below also work, but they start a fresh history, so later
 template fixes have to be copied by hand.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpriyam0001%2Fproperty-site-template&project-name=client-site&repository-name=client-site&env=GHL_WEBHOOK_URL&envDescription=GoHighLevel%20inbound%20webhook%20URL%20for%20form%20leads%20(type%20none%20to%20set%20it%20up%20later)&envLink=https%3A%2F%2Fgithub.com%2Fpriyam0001%2Fproperty-site-template%2Fblob%2Fmain%2F.env.example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpriyam0001%2Fproperty-site-template-repo&project-name=client-site&repository-name=client-site&env=GHL_WEBHOOK_URL&envDescription=GoHighLevel%20inbound%20webhook%20URL%20for%20form%20leads%20(type%20none%20to%20set%20it%20up%20later)&envLink=https%3A%2F%2Fgithub.com%2Fpriyam0001%2Fproperty-site-template-repo%2Fblob%2Fmain%2F.env.example)
 
 ## Make it the client's
 
