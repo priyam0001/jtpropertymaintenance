@@ -59,9 +59,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <SmoothScroll>
-          <Header />
-          <main id="main">{children}</main>
-          <Footer />
+          {/* Clips Reveal's off-screen x offsets so phones don't widen the page; clip (not hidden) keeps sticky + Lenis working. Must not be on body: mobile Chrome ignores it there. */}
+          <div className="overflow-x-clip">
+            <Header />
+            <main id="main">{children}</main>
+            <Footer />
+          </div>
           <MobileCallBar />
         </SmoothScroll>
       </body>
