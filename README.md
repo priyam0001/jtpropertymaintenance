@@ -13,7 +13,7 @@ Each client gets its own repo and Vercel project. This repo stays generic: fixes
 go here first; anything only one client needs goes in that client's repo.
 
 ```bash
-git clone https://github.com/priyam0001/property-site-template-repo-repo.git acme-lawn-care
+git clone https://github.com/priyam0001/property-site-template-repo.git acme-lawn-care
 cd acme-lawn-care
 git remote rename origin template          # keep a link back to the template
 git remote add origin https://github.com/priyam0001/acme-lawn-care.git   # create this empty repo on GitHub first
