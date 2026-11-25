@@ -35,24 +35,7 @@ export const site = {
   ],
 } as const;
 
-// SEO title + description per page (service pages have theirs in serviceDetails below).
-export const pageMeta = {
-  home: { title: `Property Maintenance ${city} | Lawn Care & Snow Removal | ${name}`, description: site.description },
-  services: {
-    title: `Landscaping & Property Maintenance Services ${city} | ${name}`,
-    description: `Lawn maintenance, grass cutting, clean-ups, eavestrough cleaning, aeration, snow plowing, snow removal and salting in ${city}. Residential and commercial. Free estimates.`,
-  },
-  about: {
-    title: `About Us | ${city} Property Maintenance Since ${founded} | ${name}`,
-    description: `${name} has served ${city} since ${founded} with year-round lawn care, landscaping and snow removal. 2020 and 2026 Consumer Choice Award winner for Lawn Maintenance.`,
-  },
-  contact: {
-    title: `Contact Us | Free Quote | ${name} ${city}`,
-    description: `Request a free estimate for lawn care, clean-ups or snow removal in ${city}. Call ${phone} or send us a message.`,
-  },
-};
-
-// Set to null when the client has no award: every award block on the site then disappears.
+// Set to null when the client has no award: every award block and award sentence on the site then disappears.
 export type Award = { name: string; category: string; years: string; images: { src: string; alt: string }[] };
 export const award: Award | null = {
   name: "Consumer Choice Award",
@@ -62,6 +45,26 @@ export const award: Award | null = {
     { src: "/images/award-2020.webp", alt: `2020 Consumer Choice Award letter for ${name}, Lawn Maintenance` },
     { src: "/images/award-2026.webp", alt: `2026 Consumer Choice Award certificate for ${name}, Lawn Maintenance, ${city}` },
   ],
+};
+const awardYears = award?.years.replace(" & ", " and ");
+// " 2020 and 2026 Consumer Choice Award winner for Lawn Maintenance." or "" when there is no award.
+const awardLine = award ? ` ${awardYears} ${award.name} winner for ${award.category}.` : "";
+
+// SEO title + description per page (service pages have theirs in serviceDetails below).
+export const pageMeta = {
+  home: { title: `Property Maintenance ${city} | Lawn Care & Snow Removal | ${name}`, description: site.description },
+  services: {
+    title: `Landscaping & Property Maintenance Services ${city} | ${name}`,
+    description: `Lawn maintenance, grass cutting, clean-ups, eavestrough cleaning, aeration, snow plowing, snow removal and salting in ${city}. Residential and commercial. Free estimates.`,
+  },
+  about: {
+    title: `About Us | ${city} Property Maintenance Since ${founded} | ${name}`,
+    description: `${name} has served ${city} since ${founded} with year-round lawn care, landscaping and snow removal.${awardLine}`,
+  },
+  contact: {
+    title: `Contact Us | Free Quote | ${name} ${city}`,
+    description: `Request a free estimate for lawn care, clean-ups or snow removal in ${city}. Call ${phone} or send us a message.`,
+  },
 };
 
 export const heroSlides = [
@@ -215,12 +218,12 @@ export const serviceDetails: ServiceDetail[] = [
     title: `Lawn Care & Grass Cutting in ${city}`,
     metaTitle: `Lawn Care ${city} | Grass Cutting & Lawn Maintenance | J.T. Property Maintenance`,
     metaDescription:
-      `Grass cutting and lawn maintenance in ${city} for homes and businesses. Fertilizing, aeration, overseeding and thatching. 2020 and 2026 Consumer Choice Award winner. Free estimates.`,
+      `Grass cutting and lawn maintenance in ${city} for homes and businesses. Fertilizing, aeration, overseeding and thatching.${awardLine} Free estimates.`,
     image: "/images/lawn-residential.webp",
     gallery: ["/images/lawn-commercial.webp", "/images/jt-truck.webp"],
     intro: [
       "You have a busy schedule, and yard work is the last thing you want to spend your time off on. After a hectic week, let our team take care of the time-consuming lawn chores and keep your yard clean and orderly every visit.",
-      "We cut grass for residential and commercial properties and pick up all clippings, leaves and other yard waste, so your yard and driveway are left in pristine condition. J.T. Property Maintenance won the 2020 and 2026 Consumer Choice Award in the Lawn Maintenance category.",
+      `We cut grass for residential and commercial properties and pick up all clippings, leaves and other yard waste, so your yard and driveway are left in pristine condition.${award ? ` ${name} won the ${awardYears} ${award.name} in the ${award.category} category.` : ""}`,
     ],
     includesTitle: "Lawn services",
     includes: [

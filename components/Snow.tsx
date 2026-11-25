@@ -21,6 +21,7 @@ export function Snow({ className = "" }: { className?: string }) {
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = "#fff"; // resizing a canvas resets its state, so set the colour here
       flakes = Array.from({ length: Math.round((w * h) / 9000) }, () => flake());
     };
     const frame = () => {
@@ -38,9 +39,8 @@ export function Snow({ className = "" }: { className?: string }) {
       if (onScreen && !document.hidden) raf = requestAnimationFrame(frame);
     };
 
-    ctx.fillStyle = "#fff";
     resize();
-    const ro = new ResizeObserver(() => { resize(); ctx.fillStyle = "#fff"; });
+    const ro = new ResizeObserver(resize);
     const io = new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync(); });
     ro.observe(canvas); io.observe(canvas);
     document.addEventListener("visibilitychange", sync);

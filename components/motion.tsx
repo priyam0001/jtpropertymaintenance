@@ -5,7 +5,7 @@ import Lenis from "lenis";
 import { useEffect, type ReactNode } from "react";
 
 // Landora's Elementor fadeInUp / fadeInLeft / fadeInRight, rebuilt with Framer Motion.
-const offsets = { up: { y: 40 }, left: { x: -50 }, right: { x: 50 }, none: {} } as const;
+const offsets = { up: { y: 40 }, left: { x: -50 }, right: { x: 50 } } as const;
 
 export function Reveal({
   children,
