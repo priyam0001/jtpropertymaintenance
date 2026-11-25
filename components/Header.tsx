@@ -55,7 +55,8 @@ export function Header() {
   useEffect(() => {
     const d = drawer.current, sc = scroller.current, sh = sheet.current;
     if (!d || !sc || !sh) return;
-    const gone = 1 / window.innerWidth;
+    // Any visible pixel counts as open. Math.max guards a zero-width window at load (1/0 would throw).
+    const gone = 1 / Math.max(window.innerWidth, 1);
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[entries.length - 1].intersectionRatio < gone && d.open) {
