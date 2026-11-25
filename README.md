@@ -4,7 +4,7 @@ Marketing site for J.T. Property Maintenance, Barrie ON: lawn care, clean-ups an
 Live at https://jtpropertymaintenance.vercel.app (production domain: jtpropertymaintenance.ca). Next.js 16 + Tailwind 4 +
 Framer Motion + Lenis, deployed on Vercel from `main`.
 
-Built from [property-site-template-repo](https://github.com/priyam0001/property-site-template-repo). J.T.'s content lives in
+Built from [site-template](https://github.com/priyam0001/site-template). J.T.'s content lives in
 `lib/site.ts`, `public/images/` and `TODO_CLIENT.md`. Features only J.T. needs go here; fixes every site should get go
 into the template first, then come in with:
 
