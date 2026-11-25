@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CtaBand, PageHero } from "@/components/blocks";
 import { CheckBadge, Icon } from "@/components/Icon";
 import { Reveal } from "@/components/motion";
+import { Snow } from "@/components/Snow";
 import { Eyebrow } from "@/components/ui";
 import { pageMeta, seasonal, serviceCards, site } from "@/lib/site";
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <PageHero title="Our Services" crumb="Services" image="/images/lawn-crew.webp" />
+      <PageHero title="Our Services" image="/images/lawn-crew.webp" />
 
       <section className="section-y">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-[68px]">
@@ -65,7 +66,7 @@ export default function ServicesPage() {
 
       <section className="section-y">
         <div className="container-x grid gap-5 lg:grid-cols-2">
-          <ServiceGroup title="Spring, Summer & Fall Property Care" icon="leaf" items={seasonal.warm} image="/images/lawn-residential.webp" />
+          <ServiceGroup title="Spring, Summer & Fall Property Care" icon="leaf" items={seasonal.warm} image="/images/stone-walkway.webp" />
           <ServiceGroup title="Winter Maintenance" icon="snow" items={seasonal.winter} image="/images/plow-trucks-commercial.webp" dark />
         </div>
         <p className="container-x mt-10 text-center text-[18px] font-medium text-dark">Annual, seasonal, monthly and one-time contracts available.</p>
@@ -82,6 +83,7 @@ function ServiceGroup({ title, icon, items, image, dark = false }: { title: stri
       <div className={`h-full overflow-hidden rounded-[12px] ${dark ? "bg-dark" : "bg-cream"}`}>
         <div className="relative aspect-[16/7]">
           <Image src={image} alt="" fill sizes="(min-width:1024px) 650px, 100vw" className="object-cover" />
+          {dark && <Snow />}
         </div>
         <div className="p-8 md:p-10">
           <div className="flex items-center gap-4">

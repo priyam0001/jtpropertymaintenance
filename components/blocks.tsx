@@ -1,24 +1,19 @@
 import Image from "next/image";
-import Link from "next/link";
 import { site } from "@/lib/site";
-import { Icon } from "./Icon";
 import { Reveal } from "./motion";
+import { Snow } from "./Snow";
 import { Button } from "./ui";
 
-// Inner-page banner (Landora inner pages: dark rounded image banner + breadcrumb).
-export function PageHero({ title, crumb, image }: { title: string; crumb: string; image: string }) {
+// Inner-page banner: dark rounded image banner with the page title.
+export function PageHero({ title, image, snow = false }: { title: string; image: string; snow?: boolean }) {
   return (
     <section className="relative mx-[15px] mt-[10px] overflow-hidden rounded-[12px] bg-dark">
       <Image src={image} alt="" fill sizes="100vw" className="object-cover" preload />
       <div className="absolute inset-0 bg-dark/70" />
+      {snow && <Snow />}
       <div className="container-x relative flex min-h-[420px] flex-col items-center justify-center pt-28 pb-14 text-center md:min-h-[480px]">
         <Reveal>
           <h1 className="text-white">{title}</h1>
-          <nav aria-label="Breadcrumb" className="mt-5 inline-flex items-center gap-2 rounded-[8px] bg-white/15 px-4 py-2 text-[15px] text-white backdrop-blur md:text-[17px]">
-            <Link href="/" className="hover:text-lime">Home</Link>
-            <Icon name="arrowRight" className="size-3.5 text-lime" />
-            <span aria-current="page">{crumb}</span>
-          </nav>
         </Reveal>
       </div>
     </section>

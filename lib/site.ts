@@ -178,6 +178,7 @@ export type ServiceDetail = {
   includes: string[];
   note: { id?: string; title: string; text: string };
   hours: string;
+  snow?: boolean; // falling-snow effect on the page header
 };
 
 export const serviceDetails: ServiceDetail[] = [
@@ -207,6 +208,7 @@ export const serviceDetails: ServiceDetail[] = [
       text: "Once the snow is cleared, we salt to prevent ice from building up, so your property stays safe for visitors and customers.",
     },
     hours: "Winter hours (November–March): available 24/7",
+    snow: true,
   },
   {
     slug: "lawn-care-barrie",

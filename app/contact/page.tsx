@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <PageHero title="Contact Us" crumb="Contact" image="/images/jt-truck.webp" />
+      <PageHero title="Contact Us" image="/images/jt-truck.webp" />
       <section className="section-y">
         <div className="container-x grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-[60px]">
           <Reveal from="left">

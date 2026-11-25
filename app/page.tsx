@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckBadge, Icon, type IconName } from "@/components/Icon";
 import { Marquee } from "@/components/blocks";
+import { Snow } from "@/components/Snow";
 import { Reveal } from "@/components/motion";
 import { Accordion, HeroSlider, ServiceCarousel } from "@/components/sections";
 import { Button, Eyebrow } from "@/components/ui";
@@ -262,7 +263,8 @@ function Seasonal() {
         <div className="mt-12 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
           {groups.map((g, n) => (
             <Reveal key={g.title} delay={n * 0.15}>
-              <div className={`h-full rounded-[12px] p-8 md:p-10 ${g.dark ? "bg-dark text-white" : "bg-cream"}`}>
+              <div className={`relative isolate h-full overflow-hidden rounded-[12px] p-8 md:p-10 ${g.dark ? "bg-dark text-white" : "bg-cream"}`}>
+                {g.dark && <Snow className="-z-10" />}
                 <div className="flex items-center gap-4">
                   <span className={`grid size-[54px] place-items-center rounded-[8px] ${g.dark ? "bg-lime text-dark" : "bg-white text-primary"}`}>
                     <Icon name={g.icon} className="size-6" strokeWidth={1.6} />

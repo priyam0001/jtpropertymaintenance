@@ -27,7 +27,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/services
 
   return (
     <>
-      <PageHero title={d.title} crumb={d.title.replace(` in ${site.city}`, "")} image={d.image} />
+      <PageHero title={d.title} image={d.image} snow={d.snow} />
 
       <section className="section-y">
         <div className="container-x grid items-start gap-10 lg:grid-cols-[0.42fr_1fr] lg:gap-[50px]">
@@ -71,10 +71,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/services
 
           <article className="order-1 lg:order-2">
             <Reveal>
-              <div className="relative aspect-[16/8] overflow-hidden rounded-[12px]">
-                <Image src={d.image} alt={d.title} fill sizes="(min-width:1024px) 860px, 100vw" className="object-cover" preload />
-              </div>
-              <h2 className="mt-10">{d.title}</h2>
+              <h2>{d.title}</h2>
               {d.intro.map((p) => (
                 <p key={p.slice(0, 20)} className="mt-5 text-[16px]">{p}</p>
               ))}
