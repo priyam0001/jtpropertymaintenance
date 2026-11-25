@@ -134,7 +134,8 @@ export function ServiceCarousel({ cards }: { cards: ServiceCard[] }) {
   };
   return (
     <div>
-      <div ref={track} className="-mx-5 flex snap-x snap-mandatory gap-[30px] overflow-x-auto scroll-smooth px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-lenis-prevent-wheel>
+      {/* Lenis keeps smoothing vertical wheel over the cards; only sideways swipes go to the native track. */}
+      <div ref={track} className="-mx-5 flex snap-x snap-mandatory scroll-pl-5 gap-[30px] overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:scroll-pl-0 sm:px-0 [&::-webkit-scrollbar]:hidden" data-lenis-prevent-horizontal>
         {cards.map((c) => (
           <article key={c.title} className="group w-[85%] shrink-0 snap-start rounded-[12px] bg-white p-[15px] sm:w-[calc(50%-15px)] lg:w-[calc(33.333%-20px)]">
             <div className="relative aspect-[373/260] overflow-hidden rounded-[10px]">
